@@ -126,7 +126,7 @@ shopt -s expand_aliases
 # export QT_SELECT=4
 
 
-PATH=/home/shanec80/.local/bin
+PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/shanec80/.local/bin
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
 

@@ -1,0 +1,82 @@
+# This needs work.  Adjust machine names soon
+
+
+# The prompt settings in this file are an exception to the
+# compartmentalization. I use zsh in favor of bash now, and didn't feel like
+# spending the effort to making this prompt file play nicely with the rest of
+# my dotfiles. This might be easy using rcm, but I didn't try.
+#
+
+color_my_prompt() {
+  # To color each machine's prompt differently
+  case $HOSTNAME in
+    *LegionEOS*)
+      local prompt_dir_color="$cmagentab"
+      ;;
+    *andrew*|*gates*|*shark*)
+      local prompt_dir_color="${cgreen}"
+      ;;
+    alarmpi)
+      local prompt_dir_color="${cblue}"
+      ;;
+    jake-raspi)
+      local prompt_dir_color="${cmagenta}"
+      ;;
+    *xubuntu*)
+      local prompt_dir_color="${cyan}"
+      ;;
+    pop.scottylabs.org)
+      local prompt_dir_color="${cyellow}"
+      ;;
+    scottylabs)
+      local prompt_dir_color="$credb"
+      ;;
+    metagross)
+      local prompt_dir_color="${cblue}"
+      ;;
+    lern2unix)
+      local prompt_dir_color="${cyellow}"
+      ;;
+    nlp)
+      local prompt_dir_color="${cyellow}"
+      ;;
+    qa-mydev--*)
+      local prompt_dir_color="${cmagenta}"
+      ;;
+    *)
+      local prompt_dir_color="${cred}"
+      ;;
+  esac
+
+  if [ -n "$SSH_CONNECTION" ]; then
+    local __ssh_suffix=" \u@\h"
+  else
+    local __ssh_suffix=""
+  fi
+
+
+  # change the color of the git branch depending on whether the repo is "messy" or "clean"
+  local __git_branch_color='$(if [ -z "$(git status --porcelain 2> /dev/null)" ]; then echo \[${cgreen}\]; else echo \[${cyellow}\]; fi)'
+
+  local __git_branch='`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\ \(\\\\\1\)/`'
+
+  if [ $(id -u) -eq 0 ]; then
+    local __prompt_tail="\[$cred\]\#\[$cnone\]";
+  else
+    local __prompt_tail="\[$ccyan\]$(echo -en '\xe2\x9d\xaf')\[${cnone}\]";
+  fi
+
+export PS1="\[$(tput bold)\]\[\033[38;5;129m\]┌─╼\[$(tput sgr0)\]\[\033[38;5;10m\]\u\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;129m\]::\[$(tput sgr0)\]\[\033[38;5;11m\]\h\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;129m\]╺─╸\[$(tput sgr0)\]\[\033[38;5;220m\][\w]\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;129m\]└────╼ \[$(tput sgr0)\]\[\033[38;5;11m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput bold)\]\[\033[38;5;129m\][$(tput sgr0)\]"
+
+}
+color_my_prompt
+#echo -n '.'
+
+# Turn the color back to normal after the command executes
+#trap 'echo -ne "\033[0m"' DEBUG
+#echo -en '.\r'
+
+# Using ^L by default will hide the first line of my prompt (with the pwd).
+# Also, in tmux, ^L means "move to pane to the left"
+# We rebind ^Y here so that it just runs clear
+#bind -x '"\C-y":"clear && echo"'

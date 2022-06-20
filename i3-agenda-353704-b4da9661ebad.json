@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "i3-agenda-353704",
+  "private_key_id": "b4da9661ebadf6c8c5587e07538d6066e8eeffd5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDIVMxhEFSptZIX\npdRd2HJ40mhCQfJFHGoGYOxUqTVborc7a7Rmha080uW0zzSpezogijmG3sgIVgg2\nqU9ZpKBH5o5l1jWJlJq+YKXzNZbOL7JTPaaV+xOgEtPn/fE8nHmjaXE8AZP3cdi3\ngrQzeAw1BWtobBeWLKH5/maix+6rn84HTUNxM75uBNWXYXn2edWahOPeJZUz+QpT\nfgF4enBCl7zytknTcVfdW8OsSM9T5XbLNe1zrL+abCYyHFBDEzmPpnw8lfH+oW/x\nkk6Pkd8fSR7KYrnlduLD6P7uyW6yZELAujfr2LWB4A4leAXB8asOBCNfabMFosqX\njClvfcmxAgMBAAECggEABaAN8h7Lhc1tqgDTzwPMKRTdbRjddO/YkU/I6xKqRyWx\nR/edA/D2fZn9bb+Qvr6RUgcXmPAqBUPnLKPB8OY0wvgYIQdsDu4vjy93EXZ8gtMn\nintVcWowsaK9tQq2KqnJJ5vHHHR942mcuIBwz24sR5PcoXzBh8u+i57HYoRDMSn5\nnjTPb4vgTeSHgfwJo6nYkdqFodnWpiswYpsh3r+NQjfZYXt6FFA4ViRQpaItz7ck\ntke2hOeAJI2rJdAXND0AOSAlDCjO55MSne2wHcfNqAtH4A847huohxe+de6jXLcX\n2xH7uLXOIvgt5tSfrBuxqReg8KghTKGNO61Lz0vEEQKBgQDndAOFeSERUUkODuNP\nkjXzUmlxDdiIy7PxEf2Vb8yiKqzfb1CLG4XJqiVQj4J70I4qP9HJ2I4gFSeBU/+U\nw36W1euN49io3qOMSEa33MJsLB5M+eg7fkQtgZG7e2b+nMDDrCXNBMPGt6P/Vcod\nNu13yppAM4kOjHGdqwpyrv54GQKBgQDdk9HXy04h5MyOZCTE6qYiPsYj65sOJSvO\nwWCjarqIZVFpWAOyk0rKjxMlCw/shAIRiX0jNQJOsHQoS7vWwNSHKfEpFDZWq30v\nO8WnHjczQg1fuvjgx0/VQTCv984Rt76dAFyGEnIxj2GZ4vo+1FjHB44w5SEpW6+3\nYKknYntxWQKBgQDQAbFQeOXA/H5dRf//ePVHcd8VHU5m0jsrAfIWJN2ROC0YuJ94\nBQodjO3wEqk/wNSjH6vYbOh96MUSM31UIsVXpXUGlagXS89LuYDkqF+Ke7PXlhih\nrv5yrylbhrGvTQzoTYPDVu7jXhLi3CTCUKTlrY0m+anJC2roOdkv7BkBsQKBgQC0\nN96dXcaW2rlltx4Q66lkgRo3bRIYVzNiXvZy9APznDSzMdsQC6zxQ52Wq4CwJk5o\nZSNa12qhBfP0MmT9Lqmtpfd4KfBoXeLb4AnK+1B6aGboTfLPIE1WbkdjWHJLBuAK\nYpjek3I9zRjdSTewkpYCi6qjKjnmoaQxynTKi9dLQQKBgQDLeowl3ZK+G5aVrXIz\nfaFc9yVR1ZRM8URfqKNb3GyB5IACgrBZpHC97I/6RW/IzEib70O3mB91PXHFhOW4\n1MNAl02BSBky0OY9FlWzD7fPGgHutbfaTOHQLk99eTF1t+VDTERkNji3HDqR+aX9\npUVZfEEHTQuAJzSiELvCT+un6A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "i3-agenda-service@i3-agenda-353704.iam.gserviceaccount.com",
+  "client_id": "110939380199268302999",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/i3-agenda-service%40i3-agenda-353704.iam.gserviceaccount.com"
+}

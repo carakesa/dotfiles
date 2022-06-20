@@ -1,0 +1,265 @@
+# Dark 256 color solarized theme for the color GNU ls utility.
+# Used and tested with dircolors (GNU coreutils) 8.5
+#
+# @author  {@link http://sebastian.tramp.name Sebastian Tramp}
+# @license http://sam.zoy.org/wtfpl/  Do What The Fuck You Want To Public License (WTFPL)
+#
+# More Information at
+# https://github.com/seebi/dircolors-solarized
+
+# Term Section
+TERM Eterm
+TERM ansi
+TERM color-xterm
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM cons25
+TERM console
+TERM cygwin
+TERM dtterm
+TERM eterm-color
+TERM fbterm
+TERM gnome
+TERM gnome-256color
+TERM jfbterm
+TERM konsole
+TERM konsole-256color
+TERM kterm
+TERM linux
+TERM linux-c
+TERM mach-color
+TERM mlterm
+TERM putty
+TERM putty-256color
+TERM rxvt
+TERM rxvt-256color
+TERM rxvt-cygwin
+TERM rxvt-cygwin-native
+TERM rxvt-unicode
+TERM rxvt-unicode256
+TERM rxvt-unicode-256color
+TERM screen
+TERM screen-256color
+TERM screen-256color-italic
+TERM screen-256color-bce
+TERM screen-256color-s
+TERM screen-256color-bce-s
+TERM screen-bce
+TERM screen-w
+TERM screen.linux
+TERM st
+TERM st-256color
+TERM tmux-color
+TERM tmux-256color
+TERM tmux-256color-italic
+TERM vt100
+TERM xterm
+TERM xterm-16color
+TERM xterm-256color
+TERM xterm-256color-italic
+TERM xterm-88color
+TERM xterm-color
+TERM xterm-debian
+TERM xterm-termite
+
+## Documentation
+#
+# standard colors
+#
+# Below are the color init strings for the basic file types. A color init
+# string consists of one or more of the following numeric codes:
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+#
+#
+# 256 color support
+# see here: http://www.mail-archive.com/bug-coreutils@gnu.org/msg11030.html)
+#
+# Text 256 color coding:
+# 38;5;COLOR_NUMBER
+# Background 256 color coding:
+# 48;5;COLOR_NUMBER
+
+## Special files
+
+NORMAL 0 # no color code at all
+RESET 0 # reset to "normal" color
+DIR 00;34 # directory 01;34
+LINK 00;36 # symbolic link.
+EXEC 00;32 # files with execute permissions
+ # numerical value, the color is as for the file pointed to.)
+MULTIHARDLINK 00 # regular file with more than one link
+FIFO 48;5;230;38;5;136;01 # pipe
+SOCK 48;5;230;38;5;136;01 # socket
+DOOR 48;5;230;38;5;136;01 # door
+BLK 48;5;230;38;5;244;01 # block device driver
+CHR 48;5;230;38;5;244;01 # character device driver
+ORPHAN 48;5;235;38;5;160 # symlink to nonexistent file, or non-stat'able file
+SETUID 48;5;160;38;5;230 # file that is setuid (u+s)
+SETGID 48;5;136;38;5;230 # file that is setgid (g+s)
+CAPABILITY 30;41 # file with capability
+STICKY_OTHER_WRITABLE 48;5;64;38;5;230 # dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE 48;5;235;38;5;33 # dir that is other-writable (o+w) and not sticky
+STICKY 48;5;33;38;5;230 # dir with the sticky bit set (+t) and not other-writable
+
+# Files of special interest (base02 light, base2 dark)
+*Makefile   00;30 ## solarized-light ##
+*Rakefile   00;30 ## solarized-light ##
+*README     00;30 ## solarized-light ##
+*README.txt 00;30 ## solarized-light ##
+*README.md  00;30 ## solarized-light ##
+
+# "unimportant" files as logs and backups (base1 light, base01 dark)
+.log        01;36 ## solarized-light ##
+.bak        01;36 ## solarized-light ##
+.aux        01;36 ## solarized-light ##
+.lof        01;36 ## solarized-light ##
+.lol        01;36 ## solarized-light ##
+.lot        01;36 ## solarized-light ##
+.out        01;36 ## solarized-light ##
+.toc        01;36 ## solarized-light ##
+.bbl        01;36 ## solarized-light ##
+.blg        01;36 ## solarized-light ##
+*~          01;36 ## solarized-light ##
+*#          01;36 ## solarized-light ##
+.part       01;36 ## solarized-light ##
+.incomplete 01;36 ## solarized-light ##
+.swp        01;36 ## solarized-light ##
+.tmp        01;36 ## solarized-light ##
+.temp       01;36 ## solarized-light ##
+.o          01;36 ## solarized-light ##
+.pyc        01;36 ## solarized-light ##
+.class      01;36 ## solarized-light ##
+.cache      01;36 ## solarized-light ##
+*tags       01;36 ## solarized-light ##
+*grm.desc   01;36 ## solarized-light ##
+*grm.sig    01;36 ## solarized-light ##
+*grm.sml    01;36 ## solarized-light ##
+*lex.sml    01;36 ## solarized-light ##
+*old.sml    01;36 ## solarized-light ##
+*old.sig    01;36 ## solarized-light ##
+.du         01;36 ## solarized-light ##
+.ud         01;36 ## solarized-light ##
+
+## Archives or compressed (violet + bold for compression)
+.tar    01;35
+.tgz    01;35
+.arj    01;35
+.taz    01;35
+.lzh    01;35
+.lzma   01;35
+.tlz    01;35
+.txz    01;35
+.zip    01;35
+.z      01;35
+.Z      01;35
+.dz     01;35
+.gz     01;35
+.lz     01;35
+.xz     01;35
+.bz2    01;35
+.bz     01;35
+.tbz    01;35
+.tbz2   01;35
+.tz     01;35
+.deb    01;35
+.rpm    01;35
+.jar    01;35
+.rar    01;35
+.ace    01;35
+.zoo    01;35
+.cpio   01;35
+.7z     01;35
+.rz     01;35
+.apk    01;35
+.gem    01;35
+
+# Image formats (yellow)
+.jpg    00;33
+.JPG    00;33 #stupid but needed
+.jpeg   00;33
+.gif    00;33
+.bmp    00;33
+.pbm    00;33
+.pgm    00;33
+.ppm    00;33
+.tga    00;33
+.xbm    00;33
+.xpm    00;33
+.tif    00;33
+.tiff   00;33
+.png    00;33
+.svg    00;33
+.svgz   00;33
+.mng    00;33
+.pcx    00;33
+.dl     00;33
+.xcf    00;33
+.xwd    00;33
+.yuv    00;33
+.cgm    00;33
+.emf    00;33
+.eps    00;33
+.CR2    00;33
+.ico    00;33
+.pdf    00;33
+
+# Audio formats (orange)
+.aac    01;31
+.au     01;31
+.flac   01;31
+.mid    01;31
+.midi   01;31
+.mka    01;31
+.mp3    01;31
+.mpc    01;31
+.ogg    01;31
+.ra     01;31
+.wav    01;31
+.m4a    01;31
+.axa    01;31
+.oga    01;31
+.spx    01;31
+.xspf   01;31
+
+# Video formats (as audio + bold)
+.mov    01;31
+.mpg    01;31
+.mpeg   01;31
+.m2v    01;31
+.mkv    01;31
+.ogm    01;31
+.mp4    01;31
+.m4v    01;31
+.mp4v   01;31
+.vob    01;31
+.qt     01;31
+.nuv    01;31
+.wmv    01;31
+.asf    01;31
+.rm     01;31
+.rmvb   01;31
+.flc    01;31
+.avi    01;31
+.fli    01;31
+.flv    01;31
+.gl     01;31
+.m2ts   01;31
+.divx   01;31
+.webm   01;31
+.axv    01;31
+.anx    01;31
+.ogv    01;31
+.ogx    01;31

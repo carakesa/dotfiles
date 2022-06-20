@@ -1,0 +1,17 @@
+Create "install" list: 
+kitty
+bumblebee-status-git
+optimus-manager
+
+
+i3 config - go change scrot to flameshot!
+
+Setup Bitwarden/ROFI menu:
+https://github.com/firecat53/bitwarden-menu
+
+
+ Fix Backlight
+z;9u3.  make backups
+4.  later:  conky?
+6.  Rofi Power Menu (works, but switches theme)
+9.  fix tmux

@@ -1,0 +1,24 @@
+# Set up Vim-style tab completion
+TAB: menu-complete
+set show-all-if-ambiguous on
+
+# If a tab-completed file is a symlink to a directory,
+# treat it like a directory not a file
+set mark-symlinked-directories on
+
+# Use GNU ls colors when tab-completing files
+set colored-stats on
+
+#No More Beeping!
+set bell-style none
+
+## Edit with Vi keybindings
+#set editing-mode vi
+#$if mode=vi
+#set keymap vi-command
+#"k": history-search-backward
+#"j": history-search-forward
+#Control-y: clear-screen
+#set keymap vi-insert
+#Control-y: clear-screen
+#$endif

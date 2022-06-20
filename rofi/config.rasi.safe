@@ -1,0 +1,18 @@
+/** Basic config file **/
+
+configuration {
+  show-icons:         true;
+  icon-theme:         "Papirus";
+  sort: true;
+  modi: "window,run,ssh,drun,filebrowser";
+  terminal: "terminology -B";
+  drun-match-fields: "name,generic,exec,categories,keywords";
+  drun-show-actions: true;
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  case-sensitive: false;
+  hover-select: true;
+  parse-known-hosts: true;
+  combi-modi: "window,drun";
+}
+//@theme "/usr/share/rofi/themes/arthur.rasi"
+@theme "/usr/share/rofi/themes/arthur.rasi"

@@ -1,0 +1,150 @@
+Stealing other peoples configs:
+
+keyboards.sh -- someone elses, using i3-like bindings for PopOS but then customized
+
+From Jake Zimmerman - https://github.com/jez/dotfiles
+
+Items with ** are not immediatly needed
+
+**ackrc (like grep/find, sorta)             
+**iterm (Mac Stuff)
+**agignore (ack alternative) 
+
+lesskey <-- keep as is for now
+
+**amethyst -- Tiling manager for MacOS
+
+LICENSE --- keep
+
+bash_profile -- GOOD
+
+linux-setup.md <-- reference!
+
+bashrc <-- calls other dots as modules...sorta, i think              
+
+oh-my-zsh <-- EMPTY!!
+
+config    < -- Just tmux stuff and 
+   stylesbot <-- Chrome Plugin thing (see config)
+
+##osx-setup.sh <-- mac
+
+ctags  <-- VIM programming styels               
+
+popos-setup.sh <-- stole from here to chose linux packages
+
+**devbox-setup.sh <-- install script for his stuffs     
+
+?? profile <- load ZSH environments, calls to Util .  looks like Mac script at the moment
+	contains:   ##Load host-specific zshenv configurations
+[ -f ~/.util/host.profile ] && source ~/.util/host.profile
+
+dircolors -- color coded file lists!
+
+##rcrc <-- config file for RCM
+
+editrc <-- sets "Edit" (Editline) to use Vi bindings
+
+README.md
+
+fdignore <-- tells 'fd' (find) not to search .svn/ and .git/
+rgignore <-- see fdignore
+##gemrc <-- tell Gem to use ---no-document              
+scimrc <-- leaving it, but don't care
+
+## ghci <-- Haskell Tool Stack stuff
+
+## sqliterc
+
+gvimrc <- GUI VIM sets Powerline, etc
+tmux-256color.terminfo <-- colors
+
+##haskeline -- haskel stuff
+
+tmux.conf
+
+##host-buildbox       
+##ubuntu-setup.sh <-- for droplets and stuff
+##host-jez-laptop-02  <-- Jez system specifc bindss
+
+util < - utilities!!!
+
+##host-jez-pc-02      
+
+vim
+
+###host-qa-mydev       
+
+vimrc
+
+##host-st-jez0        
+
+xterm-256color.terminfo
+
+### host-zzz-old-hosts  
+
+zfunctions <- ZSH modules
+
+##ideavimrc << -- Jetbrains IDE, etc
+zshenv << looks important to make ZSH play nice with stuff
+inputrc <<-- vi-like bindings for tab completion
+
+zshrc  << -- like the bashrc skeleton, but zsh
+
+within Util:
+after.sh <- zsh, call tmux line?
+aliases.sh <- setup aliases
+###autoupdate.sh <-- checks repos and things for update.  Do not want!
+	comment out of shells
+
+bat.sh << bat is not cat, but bat does cat different
+
+###bazel << Programming stuff I don't need
+
+###before.sh << custom to jez
+
+colors.sh <<-- more colors.  Dude really likes Solarized it seems
+
+Functions! (Directory) -- seems safe to leave for now
+
+fzf.bash
+fzf.zsh  -- these theme fzf for the shells
+
+###gitconfig <- don't care, not using his
+
+gitmessage.md <-- template for tracking git changes
+
+gnuupg.sh <<-- set path for gnupg
+
+lldb.zsh -- fzf stuff for zsh
+
+misc.bash -- sets vi controls in bash.  edit out "brew"
+
+misc.sh << sets vi, tmux, and others.  keep it as is
+
+misc.zsh <<-- like the other misc, but still has Brew
+
+prompt.bash << Try it!  could be good, but user specific
+prompt.zsh << also user specific
+
+skipdirty.zsh <<  Might work, user defined (of course) 
+
+TODO:
+
+done?  Remove unnessecary files from /home/shanec80/.dotfiles/
+tweak others   yeyah
+check out Jez's vim folder in full -- too tired!
+
+VERIFY then Merge!
+
+
+
+tmux.conf -- taken and altered
+    aliases -- minor tweak, fully removed Github, Docker, and Homebrew sections 
+
+Notes taken from Popos-Setup:  Manually installed fzf, RipGrep (RG) FD (finer), neovim, and Tmux
+       !! Consier RCM (rc management) for Dotfiles
+
+
+
+l

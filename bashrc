@@ -35,7 +35,7 @@ colors() {
 
 # Change the window title of X terminals
 case ${TERM} in
-	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
+	kitty|xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
 		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
 		;;
 	screen*)
@@ -76,25 +76,30 @@ if ${use_color} ; then
 #	fi
 
  PS1='\[\e[0;38;5;39m\][\[\e[0;38;5;226m\]\d \[\e[0;38;5;226m\]@ \[\e[0;38;5;226m\]\A\[\e[0;38;5;45m\]]\[\e[0;38;5;39m\][\[\e[0;38;5;46m\]\u\[\e[0;38;5;46m\]@\[\e[0;38;5;46m\]\h\[\e[0;38;5;45m\]]\n\[\e[0;38;5;39m\][\[\e[0;38;5;82m\]\w \[\e[0;38;5;226m\](\[\e[0;38;5;226m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0;38;5;226m\])\[\e[0;38;5;45m\]]\[\e[0;38;5;82m\]\$ \[\e[0m\]' 
-
-	alias ls='ls --color=auto'
+#exa as ls
+	alias l='exa'
+	alias ls='exa'
+	alias la='exa -a'
+	alias ll='exa -l'
+	alias lla='exa -la'
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
         # colorize grep and ls
         alias grep &> /dev/null || alias grep="grep --color=auto"
-        alias l='ls -p --color=auto -w $(($COLUMNS<120?$COLUMNS:120))'
-	alias ll='ls -lp --color=auto'
-	alias la='ls -ap --color=auto -w $((COLUMNS<120?$COLUMNS:120))'
+#	alias l='ls -p --color=auto -w $(($COLUMNS<120?$COLUMNS:120))'
+#	alias ll='ls -lp --color=auto'
+#	alias la='ls -ap --color=auto -w $((COLUMNS<120?$COLUMNS:120))'
 	alias cp="cp -v"
 	alias mv="mv -v"
 	alias rm="rm -v"
-	# so much easier to type than `cd ..`
+	alias cat="bat"	
+# so much easier to type than `cd ..`
 	alias cdd="cd .."
 	alias cddd="cd ../.."
 	alias cdddd="cd ../../.."
 	alias dfhh="du -h -d1 | sort -hr"
-	alias todo="nano ~/todo"
+	alias todo="nano ~/.dotfiles/todo"
 
 else
 	if [[ ${EUID} == 0 ]] ; then

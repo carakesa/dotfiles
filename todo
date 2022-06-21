@@ -1,17 +1,20 @@
 Create "install" list: 
-kitty
-bumblebee-status-git
-optimus-manager
+	kitty
+	bumblebee-status-git
+	optimus-manager
+	ranger
+
+Fix Keyhints2 script
+
+i3 config 
+FIXED:	verify flameshot as printscreen/scrot
+	Mic Mute
 
 
-i3 config - go change scrot to flameshot!
+Rofi & the like:
+	Setup Bitwarden Menu integration: https://github.com/firecat53/bitwarden-menu
+	Rofi power menu - Works, but random themes
+	Lockscreen after X time + suspend, hibernate, etc.
 
-Setup Bitwarden/ROFI menu:
-https://github.com/firecat53/bitwarden-menu
 
 
- Fix Backlight
-z;9u3.  make backups
-4.  later:  conky?
-6.  Rofi Power Menu (works, but switches theme)
-9.  fix tmux

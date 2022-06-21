@@ -1,7 +1,8 @@
 # Taken from Manjaro i3wm Defaults, moded to add EndeavourOS Settings
-# 6/17/2022 - incorporates 'i3-gnome', user custom shortcuts
+# 6/21/2022 - Change custom shortcuts, removed unused comments
 # KEEP:  Manjaro Bar, colors, etc to start!
-# ------------ i3-Gnome currently not part of this config -------------- #
+
+# ------------ i3-Gnome not in this config -------------- #
 
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -23,6 +24,8 @@ set $alt Mod1
 # is used in the bar {} block below.
 # was font xft:URWGothic-Book 11
 font pango: Pomodoro, FontAwesome 10
+
+
 #	                  ###################
 # ------------------------# Default Layouts # ------------------------------ #
 #                         ###################
@@ -54,6 +57,9 @@ bindsym $mod+i border toggle
 # start script for displays, call monitor.sh
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
+# --- Use LightDM Locker
+bindsym $mod+Ctrl+l exec "dm-tool lock"
+
 
 #		 #####################################
 # -------------- # keybindings for different actions # --------------------- 
@@ -64,53 +70,23 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 floating_modifier $mod
 focus_follows_mouse no
 
-# exit-menu
-# bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
-
-# Lock the system
-# lock with a picture:
-# bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
-# lock by blurring the screen:
-# bindsym $mod+Ctrl+l exec ~/.config/i3/scripts/blur-lock
-
-# --- Use LightDM Locker instead
-
-bindsym $mod+Ctrl+l exec "dm-tool lock"
-
-# ### start program launcher
-# bindsym $mod+d exec --no-startup-id dmenu_recency
-
-# ### launch categorized menu
-# bindsym $mod+z exec --no-startup-id "~/.dotfiles/config/morc_menu conf=morc_menu_v1.conf"
+# Power Profiles menu switcher
+bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
 # ------- # rofi # -----
 
+# Rofi POWER (Lock, Suspend, Shutdown, Reboot, etc)
+bindsym $mod+Ctrl+0 exec $($HOME/.dotfiles/rofi/bin/powermenu)
+#Rofi Combi-Menu
 bindsym Mod4+space exec "~/.dotfiles/util/rofibind.sh"
-# bindsym Mod4+Shift+Escape "~/.dotfiles/rofi/powermenu/powermenu.sh" 
-# keybinding in fancy rofi (automated):
-
-# start rofi
 # RUN
 bindsym $mod+d exec rofi -show run  -config $($HOME/.dotfiles/rofi/config.rasi)
-# LAUNCH
+# LAUNCH:Drun
 bindsym $mod+z exec rofi -show drun  -config $($HOME/.dotfiles/rofi/config.rasi)
-# TASKS
+# Switch Windows:TASKS
 bindsym $alt+Tab exec rofi -show window  -config $($HOME/.dotfiles/rofi/config.rasi)
-# CALC
-bindsym $mod+equal exec galculator
 # PASS
 bindsym $mod+o exec rofi-pass  -config $($HOME/.dotfiles/rofi/config.rasi)
-# POWER
-bindsym $mod+0 exec $($HOME/.dotfiles/rofi/bin/powermenu)
-# AMBIENT SOUNDS
-#bindsym $mod+Shift+s exec $HOME/.dotfiles/bin/ambientsound
-# EDITOR
-#bindsym $mod+Shift+e exec nano
-
-# Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
-# Key Hints
-bindsym $alt+F1 exec ~/.config/i3/scripts/keyhint2
 
 
 	      #####################
@@ -120,28 +96,32 @@ bindsym $alt+F1 exec ~/.config/i3/scripts/keyhint2
 # Terminals
 bindsym $mod+Return exec "kitty" 
 
+# CALC
+bindsym $mod+equal exec galculator
+# Key Hints
+bindsym $alt+F1 exec ~/.config/i3/scripts/keyhint2
+
 # ------- Function Key Launchers ---------------#
 
 bindsym $mod+F1 exec firefox
 bindsym $mod+F2 exec geary
-bindsym $mod+F3 exec thunar
-bindsym $mod+F4 exec $TERMINAL -e ranger
+bindsym $mod+F3 exec $TERMINAL -e ranger
+bindsym $mod+F4 exec thunar
 bindsym $mod+F5 exec $TERMINAL "mocp -T nes"
-# bindsym $mod+F6 exec $TERMINAL -e 'mocp'
-# bindsym $mod+F7 exec $TERMINAL -e 'mocp'
+bindsym $mod+F6 exec clementine
+# bindsym $mod+F7 exec $TERMINAL -e 
 bindsym $mod+F8 exec "terminology -B -S=h-v"
-# bindsym $mod+F9 exec $TERMINAL -e 'mocp'
-# bindsym $mod+F10 exec $TERMINAL -e 'mocp'
-# bindsym $mod+F11 exec $TERMINAL -e 'mocp'
-# bindsym $mod+F12 exec $TERMINAL -e 'mocp'
-
+# bindsym $mod+F9 exec $TERMINAL -e 
+# bindsym $mod+F10 exec $TERMINAL -e
+# bindsym $mod+F11 exec $TERMINAL -e
+# bindsym $mod+F12 exec $TERMINAL -e
 
 # Flameshot - Full Desktop to Clipboard
-bindsym Print exec --no-startup-id flameshot full -c
-# Flameshot - Active to Clipboard
-bindsym $alt+Print exec --no-startup-id flameshot screen -c 
+bindsym Print exec --no-startup-id flameshot full && notify-send "Saved GUI to Screenshots" 
+# Flameshot - Active to Clipboard (Active Screen, not active Window)
+bindsym Ctrl+Print exec --no-startup-id flameshot screen && notify-send "Saved Active Screen to Screenshots"
 # flameshot GUI - Capture interactively
-bindsym shift+$alt+Print exec --no-startup-id flameshot gui
+bindsym shift+Ctrl+Print exec --no-startup-id flameshot gui
 
 # ---------- Keybinds (close, kill, etc) ------------#
 
@@ -171,7 +151,7 @@ set $ws2 "2:"
 set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
-set $ws6 "6"
+set $ws6 "6:"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -288,7 +268,7 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
-# note $mod+0 is currently used to exit i3
+bindsym $mod+0 workspace number $ws10
 
 # switch to workspace with numpad keys
 bindcode $mod+87 workspace number 1
@@ -371,6 +351,8 @@ assign [class="Lutris"] $ws4
 assign [class="heroic"] $ws4
 assign [class="steam"] $ws4
 assign [class="discord"] $ws5
+assign [class="spotify"] $ws6
+assign [class="Clementine"] $ws6
 
 # Keep specific applications floating
 # NOTE: can remove many of these.  Probably fine to leave for now.
@@ -413,22 +395,6 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# Set shut down, restart and locking features
-#bindsym $mod+0 mode "$mode_system"
-#set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-#mode "$mode_system" {
-#    bindsym l exec --no-startup-id i3exit lock, mode "default"
-#    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-#    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-#    bindsym e exec --no-startup-id i3exit logout, mode "default"
-#    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-#    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-#    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # exit system mode: "Enter" or "Escape"
-#    bindsym Return mode "default"
-#    bindsym Escape mode "default"
-#}
 		      ##########################
 # ------------------- # Autostart applications # --------------------- #
 		      ##########################
@@ -458,20 +424,12 @@ exec_always --no-startup-id exec i3-workspace-names-daemon
 # https://github.com/jceb/dex
 exec --no-startup-id dex --autostart --environment i3
 
-# start conky:
-# exec_always --no-startup-id ~/<path to conky script>
-
 # exec --no-startup-id blueman-applet
 exec --no-startup-id xautolock -time 5 -locker "dm-tool lock"
 
 # Firefox Theme Util:  Might be problematic
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-
-# alternative
-# keybinding list in editor:
-# bindsym $mod+F1 exec xed ~/.config/i3/keybindings
-
 
 #	      #################
 # ----------- # Sound & Video # ----------- #

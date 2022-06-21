@@ -15,7 +15,7 @@ bold_font        auto
 bold_italic_font auto
 
 # Font size (in pts)
-font_size        12.5
+font_size        12.0
 
 # The foreground color
 # foreground       #ab9a71
@@ -218,8 +218,8 @@ map ctrl+shift+.        move_tab_forward
 map ctrl+shift+,        move_tab_backward
 
 # Detach_window
-map ctrl+f2 detach_tab ask
-map ctrl+f3 detach_window ask
+map ctrl+f3 detach_tab ask
+map ctrl+f2 detach_window ask
 
 # Miscellaneous
 map ctrl+shift+up      increase_font_size
@@ -253,7 +253,6 @@ allow_remote_control yes
 
 
 # BEGIN_KITTY_THEME
-# Dark Pastel
+# Adventure Time
 include current-theme.conf
 # END_KITTY_THEME
-

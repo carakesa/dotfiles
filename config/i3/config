@@ -69,9 +69,13 @@ focus_follows_mouse no
 
 # Lock the system
 # lock with a picture:
-#bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
+# bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
 # lock by blurring the screen:
-bindsym $mod+Ctrl+l exec ~/.config/i3/scripts/blur-lock
+# bindsym $mod+Ctrl+l exec ~/.config/i3/scripts/blur-lock
+
+# --- Use LightDM Locker instead
+
+bindsym $mod+Ctrl+l exec "dm-tool lock"
 
 # ### start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
@@ -91,7 +95,7 @@ bindsym $mod+d exec rofi -show run  -config $($HOME/.dotfiles/rofi/config.rasi)
 # LAUNCH
 bindsym $mod+z exec rofi -show drun  -config $($HOME/.dotfiles/rofi/config.rasi)
 # TASKS
-bindsym $mod+Tab exec rofi -show window  -config $($HOME/.dotfiles/rofi/config.rasi)
+bindsym $alt+Tab exec rofi -show window  -config $($HOME/.dotfiles/rofi/config.rasi)
 # CALC
 bindsym $mod+equal exec galculator
 # PASS
@@ -105,7 +109,7 @@ bindsym $mod+0 exec $($HOME/.dotfiles/rofi/bin/powermenu)
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
-
+# Key Hints
 bindsym $alt+F1 exec ~/.config/i3/scripts/keyhint2
 
 
@@ -122,7 +126,7 @@ bindsym $mod+F1 exec firefox
 bindsym $mod+F2 exec geary
 bindsym $mod+F3 exec thunar
 bindsym $mod+F4 exec $TERMINAL -e ranger
-bindsym $mod+F5 exec $TERMINAL -e 'mocp'
+bindsym $mod+F5 exec $TERMINAL "mocp -T nes"
 # bindsym $mod+F6 exec $TERMINAL -e 'mocp'
 # bindsym $mod+F7 exec $TERMINAL -e 'mocp'
 bindsym $mod+F8 exec "terminology -B -S=h-v"
@@ -458,7 +462,7 @@ exec --no-startup-id dex --autostart --environment i3
 # exec_always --no-startup-id ~/<path to conky script>
 
 # exec --no-startup-id blueman-applet
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 5 -locker "dm-tool lock"
 
 # Firefox Theme Util:  Might be problematic
 exec_always --no-startup-id ff-theme-util
@@ -469,48 +473,37 @@ exec_always --no-startup-id fix_xcursor
 # bindsym $mod+F1 exec xed ~/.config/i3/keybindings
 
 
-
-
 #	      #################
 # ----------- # Sound & Video # ----------- #
 #	      #################
 
-# ----- !!!! Currently Broke !!!!!-------- #
-
 ################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
+## sound-section --> Pulseaudio Configurations! ##
 ################################################################################################
 
-# exec --no-startup-id volumeicon
-# bindsym $mod+Ctrl+m exec $TERMINAL -e 'alsamixer'
-# exec --no-startup-id pulseaudio
-# exec --no-startup-id pa-applet
-# bindsym $mod+Ctrl+m exec pavucontrol
+#exec --no-startup-id volumeicon
+#bindsym $mod+Ctrl+m exec $TERMINAL -e 'alsamixer'
+exec --no-startup-id pulseaudio
+exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
-# ENABLED - 6/19/2022 Screen brightness controls
-#bindsym XF86MonBrightnessUp exec "~/.dotfiles/util/backlight.sh -inc 5; notify-send 'brightness up'"
-#bindsym XF86MonBrightnessDown exec "~/.dotfiles/util/backlight.sh -inc 5; notify-send 'brightness down'"
-
+# Working as of 6/20/2022
 # Backlight control
 bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 
-
-#backlight control
-#bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
-#bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
-
-# volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-
-# mute
-bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% && notify-send "Volume Up"
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% && notify-send "Volume Down"
+bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle && notify-send "Toggle Mute"
+# Mute Microphone
+bindsym XF86AudioMicMute exec --no-startup-id-pactl -- set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mic Toggle"
 
 # Redirect sound to headphones
 bindsym $mod+p exec /usr/local/bin/switch-audio-port
+
 
 #			######################################
 # --------------------- #      Terminal Color Palette        # ----------------- #
@@ -617,20 +610,16 @@ client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
 
 # ------------------- # Bumblebee Status Bar Instead # -------------#
 
+
 bar {
 	font pango: Pomodoro, FontAwesome 10
 	position top
 	tray_output none
 	status_command /usr/share/bumblebee-status/bumblebee-status -m nic cpu \
-		 date time weather mocp mpd spotify xkcd nvidiagpu caffeine pasink pasource battery dunstctl \
-		-p root.path=/ nic.states=^down time.format="%H:%M CW %V" date.format="%a, %b %d %Y" weather.unit=imperial weather.showcity=false pasink.left-click="pavucontrol -t 3" pasource.left-click="pavucontrol -t 4" \
+		 date time weather mocp mpd spotify xkcd nvidiagpu brightness caffeine pasink pasource battery_upower dunstctl \
+		-p root.path=/ nic.states=^down time.format="%H:%M CW %V" date.format="%a, %b %d %Y" weather.unit=imperial weather.showcity=false brightness.device_path= pulseaudio.autostart pulseaudio.showbars=1\
 		-t dracula-powerline
 }
-
-
-
-
-
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border

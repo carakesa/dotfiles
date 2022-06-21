@@ -94,6 +94,9 @@ if ${use_color} ; then
 	alias mv="mv -v"
 	alias rm="rm -v"
 	alias cat="bat"	
+# Pacman Aliases
+	alias paclean="sudo pacman -Qtdq | sudo pacman -Rns -"
+	alias pac-showorphans="pacman -Qqd | pacman -Rsu --print -"
 # so much easier to type than `cd ..`
 	alias cdd="cd .."
 	alias cddd="cd ../.."

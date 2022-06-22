@@ -10,12 +10,16 @@
 # }
 
 [core]
-modules = title,nic,cpu,date,time,weather,mocp,mpd,spotify,xkcd,nvidiagpu,brightness,caffeine,pasink,pasource,battery_upower,dunstctl 
-autohide = title,mocp,mpd,spotify 
+modules = title,nic,cpu,spacer,date,time,weather,mocp,mpd,spotify,xkcd,nvidiagpu,caffeine,pasink,pasource,battery_upower,dunstctl 
+autohide = mocp,mpd,spotify 
 theme = nord-powerline
 
 [module-parameters]
 # <key> = <value>
+title.interval=5s
+title.max=32
+title.placeholder=...
+spacer.text=
 root.path=/
 nic.states=^down
 time.format="%H:%M"

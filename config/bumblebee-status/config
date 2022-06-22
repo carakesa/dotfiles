@@ -1,0 +1,27 @@
+# ------------------- # Bumblebee Status Bar (taken from i3 config) # --
+
+# bar {
+#	font pango: Pomodoro, FontAwesome 10
+# position top tray_output none status_command /usr/share/bumblebee-status/bumblebee-status 
+#
+# -m title nic cpu date time weather mocp mpd spotify xkcd nvidiagpu brightness caffeine pasink pasource battery_upower dunstctl 
+# -p root.path=/ nic.states=^down time.format="%H:%M CW %V" date.format="%a, %b %d %Y" weather.unit=imperial  weather.showcity=false brightness.device_path= pulseaudio.autostart pulseaudio.showbars=1
+# -t dracula-powerline
+# }
+
+[core]
+modules = title,nic,cpu,date,time,weather,mocp,mpd,spotify,xkcd,nvidiagpu,brightness,caffeine,pasink,pasource,battery_upower,dunstctl 
+autohide = title,mocp,mpd,spotify 
+theme = nord-powerline
+
+[module-parameters]
+# <key> = <value>
+root.path=/
+nic.states=^down
+time.format="%H:%M"
+date.format="%a, %b %d %Y"
+weather.unit=imperial
+weather.showcity=false
+#brightness.device_path=
+pulseaudio.autostart=1
+pulseaudio.showbars=1

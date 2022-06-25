@@ -4,6 +4,11 @@ Create "install" list:
 	optimus-manager
 	ranger
 
+Test hibernate
+
+Custom Resolutions/Refresh rates:  check read-edid, get-edid, parse-edid and: https://github.com/clearlinux/distribution/issues/1626
+
+
 Fix Keyhints2 script
 
 i3 config 

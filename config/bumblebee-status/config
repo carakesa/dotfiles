@@ -1,5 +1,5 @@
 # ------------------- # Bumblebee Status Bar (taken from i3 config) # --
-
+		
 # bar {
 #	font pango: Pomodoro, FontAwesome 10
 # position top tray_output none status_command /usr/share/bumblebee-status/bumblebee-status 

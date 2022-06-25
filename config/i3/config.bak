@@ -60,6 +60,8 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 # --- Use LightDM Locker
 bindsym $mod+Ctrl+l exec "dm-tool lock"
 
+# --- Use xscreensaver 
+exec --no-startup-id xscreensaver --no-splash &
 
 #		 #####################################
 # -------------- # keybindings for different actions # --------------------- 
@@ -343,9 +345,9 @@ bindsym $mod+Ctrl+8 move container to workspace $ws8; workspace $ws8
 
 
 # --------- Opens applications on specific workspaces ------------------------#
-assign [class="geary"] $ws1
-assign [class="terminology"] $ws1
-assign [class="Firefox"] $ws2
+assign [class="geary"] $ws2
+assign [class="terminology"] $ws3
+assign [class="firefox"] $ws1
 assign [class="Thunar"] $ws3
 assign [class="Lutris"] $ws4
 assign [class="heroic"] $ws4
@@ -571,17 +573,14 @@ client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
 
 
 # ------------------- # Bumblebee Status Bar Instead # -------------#
-
-
 bar {
 	font pango: Pomodoro, FontAwesome 10
-	position top
-	tray_output none
-	status_command /usr/share/bumblebee-status/bumblebee-status -m title nic cpu \
-		 date time weather mocp mpd spotify xkcd nvidiagpu brightness caffeine pasink pasource battery_upower dunstctl \
-		-p root.path=/ nic.states=^down time.format="%H:%M CW %V" date.format="%a, %b %d %Y" weather.unit=imperial weather.showcity=false brightness.device_path= pulseaudio.autostart pulseaudio.showbars=1\
-		-t dracula-powerline
+	position top tray_output primary status_command /usr/share/bumblebee-status/bumblebee-status
+# -c /home/shanec80/.config/bumblebee-status/config
 }
+
+
+exec --no-startup-id "bumblebee-status -c ~/.config/bumblebee-status/config"
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border

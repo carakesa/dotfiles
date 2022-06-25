@@ -15,4 +15,6 @@ configuration {
   combi-modi: "window,drun,windowcd,keys";
 }
 //@theme "/usr/share/rofi/themes/arthur.rasi"
-@theme "/usr/share/rofi/themes/arthur.rasi"
+//@theme "/usr/share/rofi/themes/arthur.rasi"
+//@theme "/home/shanec80/.config/rofi/themes/apps.rasi"
+@theme "/usr/share/rofi/themes/solarized_alternate.rasi"

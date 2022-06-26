@@ -58,10 +58,8 @@ bindsym $mod+i border toggle
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # --- Use LightDM Locker
-#bindsym $mod+Ctrl+l exec "dm-tool lock"
+bindsym $mod+Ctrl+l exec "dm-tool lock"
 
-# --- Use xscreensaver 
-exec --no-startup-id xscreensaver --no-splash &
 
 #		 #####################################
 # -------------- # keybindings for different actions # --------------------- 
@@ -75,16 +73,13 @@ focus_follows_mouse no
 # Power Profiles menu switcher
 bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
+
 # ------- # rofi # -----
 
 # Rofi POWER (Lock, Suspend, Shutdown, Reboot, etc)
-#bindsym $mod+Shift+l exec $($HOME/.dotfiles/rofi/bin/powermenu)
-#Rofi Power
-
-bindsym $mod+p exec "~/.config/rofi/powermenu/powermenu.sh"
-
+bindsym $mod+p exec $($HOME/.dotfiles/rofi/bin/powermenu)
 #Rofi Combi-Menu
-bindsym $mod+space exec "~/.dotfiles/util/rofibind.sh"
+bindsym Mod4+space exec "~/.dotfiles/util/rofibind.sh"
 # RUN
 bindsym $mod+d exec rofi -show run  -config $($HOME/.dotfiles/rofi/config.rasi)
 # LAUNCH:Drun
@@ -191,7 +186,7 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-#Window Movement Mode
+# Window Movement Mode
 bindsym $mod+m mode "move"
 mode "move" {
 	# These bindings trigger in movement mode
@@ -217,19 +212,6 @@ mode "move" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-
-
-# move focused window
-#bindsym $mod+Shift+j move left
-#bindsym $mod+Shift+k move down
-#bindsym $mod+Shift+l move up
-#bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
@@ -257,8 +239,7 @@ bindsym $mod+a focus parent
 #navigate workspaces next / previous
 bindsym $alt+$mod+Right workspace next
 bindsym $alt+$mod+Left workspace prev
-bindsym $alt+$mod+j workspace prev
-bindsym $alt+$mod+semicolon workspace next
+
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -378,10 +359,12 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws1; workspace $ws10
 
+
+
 # --------- Opens applications on specific workspaces ------------------------#
-assign [class="geary"] $ws2
-assign [class="terminology"] $ws3
-assign [class="firefox"] $ws1
+assign [class="geary"] $ws1
+assign [class="terminology"] $ws1
+assign [class="Firefox"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="Lutris"] $ws4
 assign [class="heroic"] $ws4
@@ -440,7 +423,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Load Nitrogen for Wallpaper & Picom Compositing for rendering, transparency, and dimming
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id wal -R
+
 # Start picom on startx
 exec_always --no-startup-id picom -b --config ~/.config/picom.conf
 # --config=~/.dotfiles/config/picom.conf -b
@@ -500,7 +483,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@
 bindsym XF86AudioMicMute exec --no-startup-id-pactl -- set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mic Toggle"
 
 # Redirect sound to headphones
-#bindsym $mod+p exec /usr/local/bin/switch-audio-port
+# bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 
 #			######################################
@@ -571,12 +554,6 @@ client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
 # ------------------------- # i3bar with i3blocks and i3 status # -------------- #
 #			    #####################################
 
-
-# --------- Polybar! --------------------#
-
-exec_always --no-startup-id $HOME/.config/polybar/cuts/launch.sh
-
-
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 #bar {
 #	i3bar_command i3bar
@@ -613,14 +590,17 @@ exec_always --no-startup-id $HOME/.config/polybar/cuts/launch.sh
 
 
 # ------------------- # Bumblebee Status Bar Instead # -------------#
-#bar {
-#	font pango: Pomodoro, FontAwesome 10
-#	position top tray_output primary status_command /usr/share/bumblebee-status/bumblebee-status
-# -c /home/shanec80/.config/bumblebee-status/config
-#}
 
 
-#exec --no-startup-id "bumblebee-status -c ~/.config/bumblebee-status/config"
+bar {
+	font pango: Pomodoro, FontAwesome 10
+	position top
+	tray_output primary
+	status_command /usr/share/bumblebee-status/bumblebee-status -m nic cpu \
+		 date time weather mocp mpd spotify xkcd nvidiagpu brightness caffeine pasink pasource battery_upower dunstctl \
+		-p root.path=/ nic.states=^down time.format="%H:%M CW %V" date.format="%a, %b %d %Y" weather.unit=imperial weather.showcity=false brightness.device_path= pulseaudio.autostart pulseaudio.showbars=1\
+		-t dracula-powerline
+}
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border

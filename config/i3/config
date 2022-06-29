@@ -30,9 +30,45 @@ font pango: Pomodoro, FontAwesome 10
 # ------------------------# Default Layouts # ------------------------------ #
 #                         ###################
 
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
-workspace_layout default
+# --- Defaults for i3 -----
+# workspace_layout <stacking|tabbed|default> Default = Tiling
+# workspace_layout default
+
+# ------- i3 Layouts ------ 
+# Source:  https://github.com/eliep/i3-layouts
+#  set $i3l [vstack|hstack|spiral|3columns|2columns|companion|autosplit] <param> ... to workspace [workspace name]
+
+# Define initial workspace layouts:  0.x = ratio
+
+#set $ws1 1
+#set $ws2 2
+
+set $i3l vstack to workspace workspace $ws1
+set $i3l hstack 0.6 up to workspace workspace $ws2
+set $i3l spiral 0.6 to workspace workspace $ws3
+set $i3l 3columns 0.66 0.5 2 left to workspace $ws4
+set $i3l 2columns right to workspace $ws5
+set $i3l companion 0.3 0.4 up to workspace $ws6
+set $i3l autosplit to workspace $ws7
+
+# i3 Layouts - Change Workspace Layout
+# mode uses modes
+bindsym $mod+a mode "layout"
+
+mode "layout" {
+
+	bindsym $mod+v exec i3l vstack 0.5 && notify-send "Layout VStack"
+	bindsym $mod+h exec i3l hstack 0.5 && notify-send "Layout HStack"
+	bindsym $mod+s exec i3l spiral && notify-send "Spiral Layout"
+	bindsym $mod+ exec i3l 2columns && notify-send "2 Column Layout"
+	bindsym $mod+3 exec i3l 3columns && notify-send "3 Column Layout"
+	bindsym $mod+c exec i3l companion && notify-send "Companion Layout"
+	bindsym $mod+a exec i3l autosplit && nofity-send "Automatic Layout"
+	bindsym $mod+n exec i3l none && notify-send "i3 Layouts Disabled"
+	bindsym Return mode "default"
+	bindsym Escape mode "default" 
+}
+
 
 #	                     ###########
 # -------------------------- # Borders # ------------------------ #
@@ -58,7 +94,7 @@ bindsym $mod+i border toggle
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # --- Use LightDM Locker
-bindsym $mod+Ctrl+l exec "dm-tool lock"
+#bindsym $mod+Ctrl+l exec "dm-tool lock"
 
 
 #		 #####################################
@@ -87,7 +123,7 @@ bindsym $mod+z exec rofi -show drun  -config $($HOME/.dotfiles/rofi/config.rasi)
 # Switch Windows:TASKS
 bindsym $alt+Tab exec rofi -show window  -config $($HOME/.dotfiles/rofi/config.rasi)
 # PASS
-bindsym $mod+o exec rofi-pass  -config $($HOME/.dotfiles/rofi/config.rasi)
+#bindsym $mod+o exec rofi-pass  -config $($HOME/.dotfiles/rofi/config.rasi)
 
 
 	      #####################
@@ -164,9 +200,9 @@ set $ws10 "10"
 #	    ####################################
 
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+y split toggle;exec notify-send 'toggled tiling'
+#bindsym $mod+h split h;exec notify-send 'tile horizontally'
+#bindsym $mod+v split v;exec notify-send 'tile vertically'
+#bindsym $mod+y split toggle;exec notify-send 'toggled tiling'
  
 # toggle fullscreen mode for the focused container
 bindsym $mod+shift+f11 fullscreen toggle
@@ -193,30 +229,33 @@ mode "move" {
 	# Normal i3 binds (jkl; arrows, numpad)
 	# will move the active window
 	# Now we don't have to remember the extra modifiers
-	bindsym j move left
-	bindsym k move down
-	bindsym l move up
-	bindsym semicolon move right
+	bindsym j exec i3l move left
+	bindsym k exec i3l move down
+	bindsym l exec i3l move up
+	bindsym semicolon exec i3l move right
 
 	#Arrow Keys
-	bindsym Left move left
-	bindsym Down move down
-	bindsym Up move up
-	bindsym Right move right
+	bindsym Left exec i3l move left
+	bindsym Down exec i3l move down
+	bindsym Up exec i3l move up
+	bindsym Righ exec i3l move right
 
 	#Number Pad
-	bindsym 83 move left
-	bindsym 80 move up
-	bindsym 88 move down
-	bindsym 85 move right
+	bindsym 83 exec i3l move left
+	bindsym 80 exec i3l move up
+	bindsym 88 exec i3l move down
+	bindsym 85 exec i3l move right
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+#bindsym $mod+b workspace back_and_forth
+#bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# i3l Swap Containers
+# bindsym $mod+c exec i3l swap container with previous
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+q layout toggle stacking tabbed
@@ -234,7 +273,7 @@ bindsym $mod+Alt+f focus mode_toggle
 bindsym $mod+Shift+s sticky toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 #navigate workspaces next / previous
 bindsym $alt+$mod+Right workspace next
@@ -287,16 +326,16 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # switch to workspace with numpad keys
-bindcode $mod+87 workspace number 1
-bindcode $mod+88 workspace number 2
-bindcode $mod+89 workspace number 3
-bindcode $mod+83 workspace number 4
-bindcode $mod+84 workspace number 5
-bindcode $mod+85 workspace number 6
-bindcode $mod+79 workspace number 7
-bindcode $mod+80 workspace number 8
-bindcode $mod+81 workspace number 9
-bindcode $mod+90 workspace number 10
+bindcode $mod+87 workspace number $ws1
+bindcode $mod+88 workspace number $ws2
+bindcode $mod+89 workspace number $ws3
+bindcode $mod+83 workspace number $ws4
+bindcode $mod+84 workspace number $ws5
+bindcode $mod+85 workspace number $ws6
+bindcode $mod+79 workspace number $ws7
+bindcode $mod+80 workspace number $ws8
+bindcode $mod+81 workspace number $ws9
+bindcode $mod+90 workspace number $ws10
 
 # switch to workspace with numlock numpad keys
 bindcode $mod+Mod2+87 workspace number $ws1
@@ -364,12 +403,12 @@ bindsym $mod+Shift+0 move container to workspace $ws1; workspace $ws10
 # --------- Opens applications on specific workspaces ------------------------#
 assign [class="geary"] $ws1
 assign [class="terminology"] $ws1
-assign [class="Firefox"] $ws2
-assign [class="Thunar"] $ws3
+#assign [class="Firefox"] $ws2
+assign [class="Thunar"] $ws2
 assign [class="Lutris"] $ws4
 assign [class="heroic"] $ws4
 assign [class="steam"] $ws4
-assign [class="discord"] $ws5
+assign [class="discord"] $ws3
 assign [class="spotify"] $ws6
 assign [class="Clementine"] $ws6
 
@@ -418,6 +457,9 @@ bindsym $mod+Shift+r restart
 # ------------------- # Autostart applications # --------------------- #
 		      ##########################
 
+# i3 Layout
+exec_always --no-startup-id /home/shanec80/.local/bin/i3-layouts
+
 # Gnome Polkit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
@@ -437,9 +479,9 @@ exec --no-startup-id xfce4-power-manager
 # EOS Notifier
 exec --no-startup-id eos-update-notifier -init
 
-# i3-workspace-names-daemon
-exec_always --no-startup-id exec i3-workspace-names-daemon
-
+# i3-workspace-names-daemon  --- May conflict with i3-layouts(?)
+# exec_always --no-startup-id exec i3-workspace-names-daemon
+#
 # dex execute .desktop files + apps using /etc/xdg/autostart.
 # when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
 # in this cases better disable dex and use manual starting apps using xdg/autostart
@@ -635,6 +677,7 @@ smart_borders on
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
@@ -644,24 +687,24 @@ mode "$mode_gaps" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
+        bindsym plus  gaps inner current plus 3
+        bindsym minus gaps inner current minus 3
         bindsym 0     gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+plus  gaps inner all plus 3
+        bindsym Shift+minus gaps inner all minus 3
         bindsym Shift+0     gaps inner all set 0
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
+        bindsym plus  gaps outer current plus 3
+        bindsym minus gaps outer current minus 3
         bindsym 0     gaps outer current set 0
 
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+plus  gaps outer all plus 3
+        bindsym Shift+minus gaps outer all minus 3
         bindsym Shift+0     gaps outer all set 0
 
         bindsym Return mode "default"

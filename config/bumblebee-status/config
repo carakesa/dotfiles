@@ -10,14 +10,17 @@
 # }
 
 [core]
-modules = title,nic,cpu,spacer,date,time,weather,mocp,mpd,spotify,xkcd,nvidiagpu,caffeine,pasink,pasource,battery_upower,dunstctl 
+modules = title,nic,cpu,spacer,date,time,weather,mocp,mpd,spotify,xkcd,nvidiagpu,caffeine,redshift,pasink,pasource,battery_upower,dunstctl 
 autohide = mocp,mpd,spotify 
-theme = nord-powerline
+#theme = dracula-powerline
+theme = night-powerline
 
 [module-parameters]
 # <key> = <value>
-title.interval=5s
+title.interval=2s
 title.max=32
+title.scrolling.speed=3s
+title.scrolling.makewide=true
 title.placeholder=...
 spacer.text=
 root.path=/
@@ -27,5 +30,7 @@ date.format="%a, %b %d %Y"
 weather.unit=imperial
 weather.showcity=false
 #brightness.device_path=
+redshift.show_transition=true
+redshift.location=auto
 pulseaudio.autostart=1
 pulseaudio.showbars=1

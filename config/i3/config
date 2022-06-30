@@ -1,8 +1,4 @@
-# Taken from Manjaro i3wm Defaults, moded to add EndeavourOS Settings
-# 6/21/2022 - Change custom shortcuts, removed unused comments
-# KEEP:  Manjaro Bar, colors, etc to start!
-
-# ------------ i3-Gnome not in this config -------------- #
+# --- Custom i3 Config ------ ###
 
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -30,18 +26,17 @@ font pango: Pomodoro, FontAwesome 10
 # ------------------------# Default Layouts # ------------------------------ #
 #                         ###################
 
+# Default i3 config not used thanks to i3-layouts.  Keeping references just in case.
+
 # --- Defaults for i3 -----
 # workspace_layout <stacking|tabbed|default> Default = Tiling
 # workspace_layout default
 
 # ------- i3 Layouts ------ 
 # Source:  https://github.com/eliep/i3-layouts
-#  set $i3l [vstack|hstack|spiral|3columns|2columns|companion|autosplit] <param> ... to workspace [workspace name]
+# set $i3l [vstack|hstack|spiral|3columns|2columns|companion|autosplit] <param> ... to workspace [workspace name]
 
 # Define initial workspace layouts:  0.x = ratio
-
-#set $ws1 1
-#set $ws2 2
 
 set $i3l vstack to workspace workspace $ws1
 set $i3l hstack 0.6 up to workspace workspace $ws2
@@ -51,23 +46,16 @@ set $i3l 2columns right to workspace $ws5
 set $i3l companion 0.3 0.4 up to workspace $ws6
 set $i3l autosplit to workspace $ws7
 
-# i3 Layouts - Change Workspace Layout
-# mode uses modes
-bindsym $mod+a mode "layout"
+# Binds to Change Layouts
 
-mode "layout" {
-
-	bindsym $mod+v exec i3l vstack 0.5 && notify-send "Layout VStack"
-	bindsym $mod+h exec i3l hstack 0.5 && notify-send "Layout HStack"
-	bindsym $mod+s exec i3l spiral && notify-send "Spiral Layout"
-	bindsym $mod+ exec i3l 2columns && notify-send "2 Column Layout"
-	bindsym $mod+3 exec i3l 3columns && notify-send "3 Column Layout"
-	bindsym $mod+c exec i3l companion && notify-send "Companion Layout"
-	bindsym $mod+a exec i3l autosplit && nofity-send "Automatic Layout"
-	bindsym $mod+n exec i3l none && notify-send "i3 Layouts Disabled"
-	bindsym Return mode "default"
-	bindsym Escape mode "default" 
-}
+bindsym $mod+v exec i3l vstack 0.5 && notify-send "Layout VStack"
+bindsym $mod+h exec i3l hstack 0.5 && notify-send "Layout HStack"
+bindsym $mod+s exec i3l spiral && notify-send "Spiral Layout"
+bindsym $mod+q exec i3l 2columns && notify-send "2 Column Layout"
+bindsym $mod+w exec i3l 3columns && notify-send "3 Column Layout"
+bindsym $mod+c exec i3l companion && notify-send "Companion Layout"
+bindsym $mod+a exec i3l autosplit && nofity-send "Automatic Layout"
+bindsym $mod+n exec i3l none && notify-send "i3 Layouts Disabled"
 
 
 #	                     ###########
@@ -102,6 +90,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 #		 #####################################
 
 # Mouse
+
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 focus_follows_mouse no
@@ -122,7 +111,7 @@ bindsym $mod+d exec rofi -show run  -config $($HOME/.dotfiles/rofi/config.rasi)
 bindsym $mod+z exec rofi -show drun  -config $($HOME/.dotfiles/rofi/config.rasi)
 # Switch Windows:TASKS
 bindsym $alt+Tab exec rofi -show window  -config $($HOME/.dotfiles/rofi/config.rasi)
-# PASS
+# PASS -- needs implemented
 #bindsym $mod+o exec rofi-pass  -config $($HOME/.dotfiles/rofi/config.rasi)
 
 
@@ -144,14 +133,6 @@ bindsym $mod+F1 exec firefox
 bindsym $mod+F2 exec geary
 bindsym $mod+F3 exec $TERMINAL -e ranger
 bindsym $mod+F4 exec thunar
-bindsym $mod+F5 exec $TERMINAL "mocp -T nes"
-bindsym $mod+F6 exec clementine
-# bindsym $mod+F7 exec $TERMINAL -e 
-bindsym $mod+F8 exec "terminology -B -S=h-v"
-# bindsym $mod+F9 exec $TERMINAL -e 
-# bindsym $mod+F10 exec $TERMINAL -e
-# bindsym $mod+F11 exec $TERMINAL -e
-# bindsym $mod+F12 exec $TERMINAL -e
 
 # Flameshot - Full Desktop to Clipboard
 bindsym Print exec --no-startup-id flameshot full && notify-send "Saved GUI to Screenshots" 
@@ -165,6 +146,7 @@ bindsym shift+Ctrl+Print exec --no-startup-id flameshot gui
 # kill/close focused window
 bindsym $alt+F4 kill
 bindsym $mod+BackSpace kill
+# xkill - just in case
 bindsym $alt+Ctrl+x --release exec --no-startup-id xkill
 
 # ------------  Scratchpad ----------- #
@@ -185,8 +167,8 @@ bindsym $mod+minus scratchpad show
 
 set $ws1 "1:"
 set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
+set $ws3 "3:"
+set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7"
@@ -199,7 +181,8 @@ set $ws10 "10"
 # --------- # Navigating i3 (Active Workspace) # -------------- #
 #	    ####################################
 
-# split orientation
+# Old  Orientation for non-i3-layouts
+
 #bindsym $mod+h split h;exec notify-send 'tile horizontally'
 #bindsym $mod+v split v;exec notify-send 'tile vertically'
 #bindsym $mod+y split toggle;exec notify-send 'toggled tiling'
@@ -250,17 +233,19 @@ mode "move" {
 }
 
 # workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 #bindsym $mod+b workspace back_and_forth
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # i3l Swap Containers
 # bindsym $mod+c exec i3l swap container with previous
 
+# ----- i3 layout toggles ------------------#
+
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+q layout toggle stacking tabbed
-bindsym $mod+w layout toggle splitv stacking
-bindsym $mod+e layout toggle splith stacking
+# bindsym $mod+q layout toggle stacking tabbed
+# bindsym $mod+w layout toggle splitv stacking
+bindsym $mod+e layout toggle splith splitv stacking
 
 # toggle tiling / floating
 bindsym $mod+f floating toggle
@@ -401,10 +386,11 @@ bindsym $mod+Shift+0 move container to workspace $ws1; workspace $ws10
 
 
 # --------- Opens applications on specific workspaces ------------------------#
-assign [class="geary"] $ws1
-assign [class="terminology"] $ws1
-#assign [class="Firefox"] $ws2
-assign [class="Thunar"] $ws2
+
+assign [class="geary"] $ws2
+assign [class="terminology"] $ws8
+assign [class="Firefox"] $ws1
+assign [class="Thunar"] $ws3
 assign [class="Lutris"] $ws4
 assign [class="heroic"] $ws4
 assign [class="steam"] $ws4
@@ -459,6 +445,12 @@ bindsym $mod+Shift+r restart
 
 # i3 Layout
 exec_always --no-startup-id /home/shanec80/.local/bin/i3-layouts
+
+# sane_i3 script (python:  
+exec_always --no-startup-id /$HOME/.config/i3/scripts/sane_i3.py
+
+# redshift
+exec_always --no-startup-id redshift
 
 # Gnome Polkit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -626,22 +618,15 @@ client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
 #        urgent_workspace   #16a085 #FDF6E3 #E5201D
 #    }
 #}
-#
-# hide/unhide i3status bar
-# bindsym $mod+f bar mode toggle
-
 
 # ------------------- # Bumblebee Status Bar Instead # -------------#
 
 
 bar {
-	font pango: Pomodoro, FontAwesome 10
+	font pango: Pomodoro, FontAwesome 11
 	position top
 	tray_output primary
-	status_command /usr/share/bumblebee-status/bumblebee-status -m nic cpu \
-		 date time weather mocp mpd spotify xkcd nvidiagpu brightness caffeine pasink pasource battery_upower dunstctl \
-		-p root.path=/ nic.states=^down time.format="%H:%M CW %V" date.format="%a, %b %d %Y" weather.unit=imperial weather.showcity=false brightness.device_path= pulseaudio.autostart pulseaudio.showbars=1\
-		-t dracula-powerline
+	status_command /usr/share/bumblebee-status/bumblebee-status 
 }
 
 # Theme colors
@@ -658,13 +643,8 @@ bar {
 		    #############################
 
 # Set inner/outer gaps
-gaps inner 4
-gaps outer 0
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
+gaps inner 10
+gaps outer 2
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on

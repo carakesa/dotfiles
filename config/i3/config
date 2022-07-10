@@ -41,7 +41,8 @@ font pango: Pomodoro, FontAwesome 10
 set $i3l vstack to workspace workspace $ws1
 set $i3l hstack 0.6 up to workspace workspace $ws2
 set $i3l spiral 0.6 to workspace workspace $ws3
-set $i3l 3columns 0.66 0.5 2 left to workspace $ws4
+set $i3l companion 0.3 0.4 up to workspace $ws4
+#set $i3l 3columns 0.66 0.5 2 left to workspace $ws4
 set $i3l 2columns right to workspace $ws5
 set $i3l companion 0.3 0.4 up to workspace $ws6
 set $i3l autosplit to workspace $ws7
@@ -102,7 +103,9 @@ bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 # ------- # rofi # -----
 
 # Rofi POWER (Lock, Suspend, Shutdown, Reboot, etc)
-bindsym $mod+p exec $($HOME/.dotfiles/rofi/bin/powermenu)
+# bindsym $mod+p exec $($HOME/.dotfiles/rofi/bin/powermenu)
+bindsym $mod+p exec $($HOME/.dotfiles/config/i3/scripts/powermenu)
+
 #Rofi Combi-Menu
 bindsym Mod4+space exec "~/.dotfiles/util/rofibind.sh"
 # RUN
@@ -444,7 +447,10 @@ bindsym $mod+Shift+r restart
 		      ##########################
 
 # i3 Layout
-exec_always --no-startup-id /home/shanec80/.local/bin/i3-layouts
+exec_always --no-startup-id sleep 2 && /$HOME/.local/bin/i3-layouts
+
+# Pulse Audio
+# exec_always --no-startup-id sleep 2 && "pulseaudio -k" && sleep 3 && "pulseaudio -D"
 
 # sane_i3 script (python:  
 exec_always --no-startup-id /$HOME/.config/i3/scripts/sane_i3.py
@@ -481,7 +487,8 @@ exec --no-startup-id eos-update-notifier -init
 # https://github.com/jceb/dex
 exec --no-startup-id dex --autostart --environment i3
 
-# exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet
+# exec_always --no-startup-id "pulseaudio --daemonize=yes"
 exec --no-startup-id xautolock -time 5 -locker "dm-tool lock"
 
 # Firefox Theme Util:  Might be problematic
@@ -498,7 +505,7 @@ exec_always --no-startup-id fix_xcursor
 
 #exec --no-startup-id volumeicon
 #bindsym $mod+Ctrl+m exec $TERMINAL -e 'alsamixer'
-exec --no-startup-id pulseaudio
+# exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 

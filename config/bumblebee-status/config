@@ -10,7 +10,8 @@
 # }
 
 [core]
-modules = title,nic,cpu,spacer,date,time,weather,mocp,mpd,spotify,xkcd,nvidiagpu,caffeine,redshift,pasink,pasource,battery_upower,dunstctl 
+# removed pasource and pasink from modules on 15jul22
+modules = title,nic,date,time,weather,mocp,mpd,spotify,xkcd,nvidiagpu,caffeine,redshift,battery_upower,dunstctl 
 autohide = mocp,mpd,spotify 
 #theme = dracula-powerline
 theme = night-powerline

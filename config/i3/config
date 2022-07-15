@@ -453,7 +453,7 @@ exec_always --no-startup-id sleep 2 && /$HOME/.local/bin/i3-layouts
 # exec_always --no-startup-id sleep 2 && "pulseaudio -k" && sleep 3 && "pulseaudio -D"
 
 # sane_i3 script (python:  
-exec_always --no-startup-id /$HOME/.config/i3/scripts/sane_i3.py
+# exec_always --no-startup-id /$HOME/.config/i3/scripts/sane_i3.py
 
 # redshift
 exec_always --no-startup-id redshift
@@ -466,6 +466,7 @@ exec --no-startup-id nitrogen --restore
 
 # Start picom on startx
 exec_always --no-startup-id picom -b --config ~/.config/picom.conf
+
 # --config=~/.dotfiles/config/picom.conf -b
 
 # network monitor
